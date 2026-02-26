@@ -41,6 +41,7 @@ class ScoreBoard
     public string[] _names;
     public int[] _scores;
     public int _count;
+    public int Count => _count;
 
     public ScoreBoard(int capacity)
     {
@@ -51,14 +52,13 @@ class ScoreBoard
 
     public void Register(string name, int score)
     {
-        _names[_count] = name;
-        _scores[_count] = score;
-        _count++;
-
-        if (_count > _names.Length)
+        if (_count >= _names.Length)
         {
             Console.WriteLine("성적표가 가득 찼습니다.");
+            return;
         }
+        _names[_count] = name;
+        _scores[_count++] = score;
     }
     public string this[int index]
     {
@@ -76,7 +76,7 @@ class ScoreBoard
     {
         get
         {
-            for (int i = 0; i < _count; i++)
+            for (int i = 0; i < _names.Length; i++)
             {
                 if (_names[i] == name)
                 {
@@ -87,7 +87,7 @@ class ScoreBoard
         }
         set
         {
-            for (int i = 0; i < _count; i++)
+            for (int i = 0; i < _names.Length; i++)
             {
                 if (_names[i] == name)
                 {
